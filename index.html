@@ -3,476 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick Transportes - Expresso e Mudanças</title>
     
-    <title>Rick Transportes | Orçamento de Mudanças e Carretos</title>
-    <meta name="title" content="Rick Transportes | Orçamento Rápido de Mudanças e Carretos">
-    <meta name="description" content="Solicite seu orçamento online para mudanças residenciais, comerciais e carretos rápidos. Logística segura com o melhor custo-benefício.">
-    <meta name="keywords" content="mudanças, carretos, transportes, logística, frete, orçamento mudança, rick transportes">
-    <meta name="author" content="Rick Transportes">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://orcamento.logisticaveicular.com.br/" />
+    <meta property="og:title" content="Rick Transportes - Orçamento Online">
+    <meta property="og:description" content="Soluções em Logística, Mudanças e Carretos. Faça seu orçamento online rapidamente.">
+    <meta property="og:image" content="https://i.ibb.co/pBXVVWn2/og-image.png">
     
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://orcamento.logisticaveicular.com.br/">
-    <meta property="og:title" content="🚚 Cotação Rápida - Rick Transportes">
-    <meta property="og:description" content="Simule e envie seu orçamento de transporte ou mudança agora mesmo, direto para nosso WhatsApp.">
-    <meta property="og:image" content="https://i.ibb.co/chc1Cb4Q/og-imagem.jpg">
-    <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="800">
-    <meta property="og:site_name" content="Rick Transportes">
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            light: '#1e293b',
+                            cyan: '#06b6d4',
+                            red: '#ef4444',
+                            green: '#22c55e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --brand-neon: #00F2FF;
-            --brand-neon-hover: #00d0db;
-            --brand-dark: #0A192F;
-        }
-        
-        body { background-color: #050C16; color: #f3f4f6; }
-        .text-brand-neon { color: var(--brand-neon); }
-        .bg-brand-neon { background-color: var(--brand-neon); }
-        
-        .neon-glow { 
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.1); 
-            border: 1px solid rgba(0, 242, 255, 0.2); 
-        }
-        .neon-glow:hover { 
-            box-shadow: 0 0 25px rgba(0, 242, 255, 0.4); 
-            border-color: var(--brand-neon); 
-        }
-        
-        .qr-card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .qr-card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,242,255,0.2); }
-
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-        
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050C16; }
-        ::-webkit-scrollbar-thumb { background: var(--brand-neon); border-radius: 4px; }
-
-        .hero-bg {
-            background-image: linear-gradient(rgba(5, 12, 22, 0.90), rgba(5, 12, 22, 0.98)), url('https://images.unsplash.com/photo-1600518464441-9154a4dea21b?auto=format&fit=crop&q=80&w=2070');
-            background-size: cover;
-            background-position: center;
-        }
+        /* Custom Styles for hidden scrollbars and smooth transitions */
+        body { -webkit-tap-highlight-color: transparent; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .accordion-content { transition: max-height 0.3s ease-in-out, padding 0.3s ease; max-height: 0; overflow: hidden; }
+        .accordion-content.open { max-height: 1000px; padding-top: 1rem; padding-bottom: 1rem; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-cyan-500 selection:text-black">
+<body class="bg-gray-50 text-gray-800 pb-24 font-sans">
 
-    <header class="w-full min-h-[500px] flex flex-col justify-center items-center text-center px-4 relative overflow-hidden py-10 hero-bg">
-        <div class="absolute w-72 h-72 bg-cyan-600/10 blur-[100px] rounded-full"></div>
+    <header class="relative bg-brand-dark text-white overflow-hidden pb-12 rounded-b-[2.5rem] shadow-xl">
+        <div class="absolute inset-0 bg-[url('https://i.ibb.co/chc1Cb4Q/og-imagem.jpg')] bg-cover bg-center opacity-20"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark to-transparent"></div>
         
-        <img src="https://i.ibb.co/chc1Cb4Q/og-imagem.jpg" alt="Logotipo Rick Transportes" 
-             class="w-64 md:w-72 h-auto mb-4 z-10 object-contain drop-shadow-[0_0_15px_rgba(0,242,255,0.3)] rounded-full"/>
-        
-        <h1 class="text-3xl md:text-5xl font-black text-white tracking-tighter z-10 uppercase mt-2">
-            Soluções em <span class="text-brand-neon">Logística</span>
-        </h1>
-        
-        <div class="flex flex-wrap justify-center gap-3 mt-6 z-10">
-            <span class="flex items-center gap-2 bg-black/70 border border-brand-neon/50 text-brand-neon px-4 py-2 rounded-full text-xs md:text-sm font-black uppercase tracking-widest backdrop-blur-md">
-                <i class="fas fa-truck"></i> Mudanças
-            </span>
-            <span class="flex items-center gap-2 bg-black/70 border border-brand-neon/50 text-brand-neon px-4 py-2 rounded-full text-xs md:text-sm font-black uppercase tracking-widest backdrop-blur-md">
-                <i class="fas fa-boxes"></i> Carretos
-            </span>
-        </div>
-
-        <div class="mt-8 px-6 py-2 rounded-full border border-cyan-500/30 bg-black/60 backdrop-blur-sm z-10" id="status-badge">
-            <span id="status-text" class="text-brand-neon font-bold uppercase text-sm tracking-widest">Verificando...</span>
+        <div class="relative z-10 flex flex-col items-center pt-10 px-4 text-center">
+            <div class="w-32 h-32 rounded-full border-4 border-brand-cyan bg-white flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.5)] mb-4 overflow-hidden">
+                <img src="https://i.ibb.co/pBXVVWn2/og-image.png" alt="Rick Transportes Logo" class="w-full h-full object-cover">
+            </div>
+            
+            <h1 class="font-heading font-800 text-4xl italic tracking-tight mb-1">RICK</h1>
+            <h2 class="font-heading font-700 text-3xl text-brand-cyan italic tracking-tight mb-2">TRANSPORTES</h2>
+            <p class="text-sm tracking-widest uppercase mb-6 font-medium">Expresso e Mudanças</p>
+            
+            <div id="status-badge" class="bg-brand-green/20 border border-brand-green text-brand-green px-4 py-2 rounded-full flex items-center gap-2 text-sm font-bold tracking-wide shadow-lg cursor-pointer transition-colors" onclick="toggleStatus()">
+                <div class="w-3 h-3 bg-brand-green rounded-full animate-pulse status-indicator"></div>
+                <span class="status-text">DISPONÍVEL AGORA</span>
+            </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 py-16 mb-6">
-        <h2 class="text-3xl font-black text-center mb-12 text-white italic tracking-wide">
-            SELECIONE O <span class="text-brand-neon">SERVIÇO</span>
-        </h2>
+    <main class="max-w-md mx-auto px-4 -mt-6 relative z-20">
+        
+        <div class="bg-white rounded-2xl shadow-lg p-5 mb-6 border border-gray-100">
+            <h3 class="font-heading font-800 text-xl italic text-center mb-4 uppercase">Detalhes do Orçamento</h3>
+            <div class="bg-brand-dark text-brand-cyan font-bold text-center py-2 rounded-lg mb-6 text-sm uppercase">
+                Mudança Residencial
+            </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="menu">
-            <article class="bg-zinc-900 rounded-2xl overflow-hidden flex flex-col md:flex-row hover:-translate-y-1 duration-300 neon-glow cursor-pointer add-to-cart-btn border border-zinc-800" data-name="Mudança Residencial">
-                <div class="p-6 flex-1 flex flex-col justify-between pointer-events-none">
-                    <div>
-                        <h3 class="font-black text-2xl mb-2 uppercase text-white">Mudança <span class="text-brand-neon">Residencial</span></h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Carretos e mudanças completas. Opção com <strong class="text-white">embalagem, ajudantes e montagem</strong>.</p>
+            <div class="mb-6">
+                <h4 class="font-bold text-brand-cyan border-l-4 border-brand-cyan pl-2 mb-3">1. LOGÍSTICA E TRAJETO</h4>
+                <div class="space-y-3">
+                    <div class="relative">
+                        <i class="fa-solid fa-location-dot absolute left-3 top-3.5 text-brand-red"></i>
+                        <input type="text" placeholder="Retirada (Bairro/Cidade)" class="w-full bg-gray-100 rounded-lg py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan">
                     </div>
-                    <div class="flex items-center justify-between mt-6">
-                        <span class="font-bold text-lg text-cyan-400 italic">Cotação Completa</span>
-                        <button class="bg-brand-neon text-black w-12 h-12 rounded-xl pointer-events-auto transition hover:bg-cyan-400 flex items-center justify-center shadow-[0_0_15px_rgba(0,242,255,0.4)]">
-                            <i class="fa fa-arrow-right text-xl"></i>
-                        </button>
+                    <div class="relative">
+                        <i class="fa-solid fa-flag-checkered absolute left-3 top-3.5 text-gray-500"></i>
+                        <input type="text" placeholder="Entrega (Bairro/Cidade)" class="w-full bg-gray-100 rounded-lg py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan">
+                    </div>
+                    <select class="w-full bg-gray-100 rounded-lg py-3 px-4 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-brand-cyan appearance-none">
+                        <option value="">O local possui escadas?</option>
+                        <option value="none">Não, térreo ou elevador</option>
+                        <option value="1-2">Sim, 1 a 2 lances</option>
+                        <option value="3+">Sim, 3 ou mais lances</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h4 class="font-bold text-brand-cyan border-l-4 border-brand-cyan pl-2 mb-3">2. SERVIÇOS EXTRAS</h4>
+                <div class="flex gap-3">
+                    <select class="flex-1 bg-gray-100 rounded-lg py-3 px-3 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-brand-cyan">
+                        <option>Sem Ajudante</option>
+                        <option>1 Ajudante</option>
+                        <option>2 Ajudantes</option>
+                        <option>3+ Ajudantes</option>
+                    </select>
+                    <select class="flex-1 bg-white border-2 border-brand-cyan rounded-lg py-3 px-3 text-sm text-gray-600 focus:outline-none">
+                        <option>Sem Montador</option>
+                        <option>Com Montador</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-brand-cyan border-l-4 border-brand-cyan pl-2 mb-3">3. INVENTÁRIO (VOLUME)</h4>
+                
+                <div class="mb-2 border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="w-full bg-gray-50 px-4 py-3 flex justify-between items-center font-bold text-gray-700" onclick="toggleAccordion('acc-cozinha', this)">
+                        <span><i class="fa-solid fa-kitchen-set mr-2 text-brand-cyan"></i> Cozinha / Lavanderia</span>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div id="acc-cozinha" class="accordion-content bg-white px-4">
+                        <div class="space-y-4" id="list-cozinha">
+                            </div>
                     </div>
                 </div>
-            </article>
 
-            <article class="bg-zinc-900 rounded-2xl overflow-hidden flex flex-col md:flex-row hover:-translate-y-1 duration-300 neon-glow cursor-pointer add-to-cart-btn border border-zinc-800" data-name="Logística Rápida / Carreto">
-                <div class="p-6 flex-1 flex flex-col justify-between pointer-events-none">
-                    <div>
-                        <h3 class="font-black text-2xl mb-2 uppercase text-white">Carreto <span class="text-brand-neon">Rápido</span></h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Transportes ágeis para pequenas e médias cargas comerciais ou avulsas.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-6">
-                        <span class="font-bold text-lg text-cyan-400 italic">Cotação Expressa</span>
-                        <button class="bg-brand-neon text-black w-12 h-12 rounded-xl pointer-events-auto transition hover:bg-cyan-400 flex items-center justify-center shadow-[0_0_15px_rgba(0,242,255,0.4)]">
-                            <i class="fa fa-arrow-right text-xl"></i>
-                        </button>
+                <div class="mb-2 border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="w-full bg-gray-50 px-4 py-3 flex justify-between items-center font-bold text-gray-700" onclick="toggleAccordion('acc-sala', this)">
+                        <span><i class="fa-solid fa-couch mr-2 text-brand-cyan"></i> Sala de Estar / Jantar</span>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div id="acc-sala" class="accordion-content bg-white px-4">
+                        <div class="space-y-4" id="list-sala">
+                            </div>
                     </div>
                 </div>
-            </article>
+
+                <div class="mb-2 border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="w-full bg-gray-50 px-4 py-3 flex justify-between items-center font-bold text-gray-700" onclick="toggleAccordion('acc-quarto', this)">
+                        <span><i class="fa-solid fa-bed mr-2 text-brand-cyan"></i> Quartos</span>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div id="acc-quarto" class="accordion-content bg-white px-4">
+                        <div class="space-y-4" id="list-quarto">
+                            </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </main>
 
-    <footer class="bg-black text-center py-6 border-t border-zinc-800">
-        <p class="text-zinc-500 text-sm font-bold uppercase">© 2026 Rick Transportes. CNPJ: 50.840.457/0001-38.</p>
-    </footer>
-
-    <div class="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center hidden p-4 backdrop-blur-md" id="quote-modal" role="dialog" aria-modal="true">
-        <div class="bg-zinc-900 border-2 border-brand-neon w-full max-w-lg rounded-2xl p-6 overflow-y-auto max-h-[90vh] shadow-[0_0_30px_rgba(0,242,255,0.2)] scroll-smooth">
-            
-            <h2 class="text-2xl font-black text-center mb-4 uppercase text-white italic">Cotação Rick</h2>
-            <p id="selected-service-title" class="text-center font-black text-black bg-brand-neon py-2 rounded-lg mb-6 uppercase tracking-wider"></p>
-
-            <div class="space-y-4">
-                <p class="font-bold border-l-4 border-brand-neon pl-2 uppercase text-sm text-cyan-400">1. Localização</p>
-                
-                <div class="flex flex-col gap-2">
-                    <div class="flex gap-2">
-                        <input type="text" id="cep-origin" placeholder="CEP Origem" class="w-1/3 p-3 bg-zinc-800 border border-zinc-700 text-white rounded-xl outline-none focus:border-brand-neon focus:ring-1 ring-brand-neon text-sm" maxlength="9"/>
-                        <input type="text" id="origin" placeholder="📍 Rua/Bairro (Retirada)" class="w-2/3 p-3 bg-zinc-800 border border-zinc-700 text-white rounded-xl outline-none focus:border-brand-neon focus:ring-1 ring-brand-neon"/>
-                    </div>
-                    <input type="text" id="num-origin" placeholder="Número / Complemento" class="w-full p-3 bg-zinc-800 border border-zinc-700 text-white rounded-xl outline-none focus:border-brand-neon focus:ring-1 ring-brand-neon"/>
-                </div>
-
-                <div class="flex flex-col gap-2 mt-4">
-                    <div class="flex gap-2">
-                        <input type="text" id="cep-destination" placeholder="CEP Destino" class="w-1/3 p-3 bg-zinc-800 border border-zinc-700 text-white rounded-xl outline-none focus:border-brand-neon focus:ring-1 ring-brand-neon text-sm" maxlength="9"/>
-                        <input type="text" id="destination" placeholder="🏁 Rua/Bairro (Entrega)" class="w-2/3 p-3 bg-zinc-800 border border-zinc-700 text-white rounded-xl outline-none focus:border-brand-neon focus:ring-1 ring-brand-neon"/>
-                    </div>
-                    <input type="text" id="num-destination" placeholder="Número / Complemento" class="w-full p-3 bg-zinc-800 border border-zinc-700 text-white rounded-xl outline-none focus:border-brand-neon focus:ring-1 ring-brand-neon"/>
-                </div>
-                
-                <select id="access-type" class="w-full p-3 mt-2 bg-zinc-800 border border-zinc-700 text-white rounded-xl outline-none focus:border-brand-neon text-sm font-bold">
-                    <option value="" disabled selected>Tipo de Acesso (Possui escadas?)</option>
-                    <option value="Térreo / Sem Escadas">Térreo / Sem Escadas</option>
-                    <option value="Prédio COM Elevador">Prédio COM Elevador</option>
-                    <option value="Possui Escadas">Possui Escadas (Avaliar no WhatsApp)</option>
-                </select>
-
-                <p class="font-bold border-l-4 border-brand-neon pl-2 uppercase text-sm text-cyan-400 mt-6">2. Detalhes do Serviço</p>
-                
-                <div class="grid grid-cols-2 gap-2 mb-2">
-                    <select id="helpers" class="w-full p-3 bg-zinc-800 border border-zinc-700 text-white rounded-xl outline-none focus:border-brand-neon text-sm font-bold">
-                        <option value="Sem Ajudante">Sem Ajudante</option>
-                        <option value="1 Ajudante">1 Ajudante</option>
-                        <option value="2 Ajudantes">2 Ajudantes</option>
-                        <option value="3+ Ajudantes">3+ Ajudantes</option>
-                    </select>
-                    <select id="assembly" class="w-full p-3 bg-zinc-800 border border-zinc-700 text-white rounded-xl outline-none focus:border-brand-neon text-sm font-bold">
-                        <option value="Sem Montador">Sem Montagem</option>
-                        <option value="Precisa de Montador">Com Montagem</option>
-                    </select>
-                </div>
-                <div class="grid grid-cols-1 gap-2 mb-2">
-                    <select id="packing" class="w-full p-3 bg-zinc-800 border border-zinc-700 text-white rounded-xl outline-none focus:border-brand-neon text-sm font-bold">
-                        <option value="Sem Embalagem">Sem Embalagem (Por conta do cliente)</option>
-                        <option value="Embalagem Completa">Quero Embalagem (Plástico Bolha/Caixas)</option>
-                    </select>
-                </div>
-
-                <p class="font-bold border-l-4 border-brand-neon pl-2 uppercase text-sm text-cyan-400 mt-6">3. Inventário Principal</p>
-                
-                <div class="bg-black/50 p-4 rounded-xl border border-zinc-800 space-y-4">
-                    
-                    <div>
-                        <h4 class="text-brand-neon text-xs font-black uppercase mb-3 border-b border-zinc-800 pb-1">Cozinha & Lavanderia</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-bold text-gray-300">🧊 Geladeira</span>
-                                <div class="flex items-center gap-3">
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-red-500 transition counter-btn border border-zinc-600" data-action="minus" data-target="item-geladeira">-</button>
-                                    <span class="w-4 text-center font-bold item-count text-white" id="item-geladeira">0</span>
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-brand-neon transition counter-btn border border-zinc-600" data-action="plus" data-target="item-geladeira">+</button>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-bold text-gray-300">🔥 Fogão</span>
-                                <div class="flex items-center gap-3">
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-red-500 transition counter-btn border border-zinc-600" data-action="minus" data-target="item-fogao">-</button>
-                                    <span class="w-4 text-center font-bold item-count text-white" id="item-fogao">0</span>
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-brand-neon transition counter-btn border border-zinc-600" data-action="plus" data-target="item-fogao">+</button>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-bold text-gray-300">🧺 Máquina de Lavar</span>
-                                <div class="flex items-center gap-3">
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-red-500 transition counter-btn border border-zinc-600" data-action="minus" data-target="item-maquina">-</button>
-                                    <span class="w-4 text-center font-bold item-count text-white" id="item-maquina">0</span>
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-brand-neon transition counter-btn border border-zinc-600" data-action="plus" data-target="item-maquina">+</button>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-bold text-gray-300">🪑 Mesa com Cadeiras</span>
-                                <div class="flex items-center gap-3">
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-red-500 transition counter-btn border border-zinc-600" data-action="minus" data-target="item-mesa">-</button>
-                                    <span class="w-4 text-center font-bold item-count text-white" id="item-mesa">0</span>
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-brand-neon transition counter-btn border border-zinc-600" data-action="plus" data-target="item-mesa">+</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h4 class="text-brand-neon text-xs font-black uppercase mb-3 mt-4 border-b border-zinc-800 pb-1">Salas e Quartos</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-bold text-gray-300">🛋️ Sofá</span>
-                                <div class="flex items-center gap-3">
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-red-500 transition counter-btn border border-zinc-600" data-action="minus" data-target="item-sofa">-</button>
-                                    <span class="w-4 text-center font-bold item-count text-white" id="item-sofa">0</span>
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-brand-neon transition counter-btn border border-zinc-600" data-action="plus" data-target="item-sofa">+</button>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-bold text-gray-300">📺 Painel / Rack</span>
-                                <div class="flex items-center gap-3">
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-red-500 transition counter-btn border border-zinc-600" data-action="minus" data-target="item-rack">-</button>
-                                    <span class="w-4 text-center font-bold item-count text-white" id="item-rack">0</span>
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-brand-neon transition counter-btn border border-zinc-600" data-action="plus" data-target="item-rack">+</button>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-bold text-gray-300">🛏️ Cama (Box/Comum)</span>
-                                <div class="flex items-center gap-3">
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-red-500 transition counter-btn border border-zinc-600" data-action="minus" data-target="item-cama">-</button>
-                                    <span class="w-4 text-center font-bold item-count text-white" id="item-cama">0</span>
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-brand-neon transition counter-btn border border-zinc-600" data-action="plus" data-target="item-cama">+</button>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-bold text-gray-300">🚪 Guarda-Roupa</span>
-                                <div class="flex items-center gap-3">
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-red-500 transition counter-btn border border-zinc-600" data-action="minus" data-target="item-armario">-</button>
-                                    <span class="w-4 text-center font-bold item-count text-white" id="item-armario">0</span>
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-brand-neon transition counter-btn border border-zinc-600" data-action="plus" data-target="item-armario">+</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h4 class="text-brand-neon text-xs font-black uppercase mb-3 mt-4 border-b border-zinc-800 pb-1">Volumes Diversos</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center p-2 border border-brand-neon/30 rounded-lg bg-brand-neon/5">
-                                <span class="text-sm font-bold text-brand-neon">📦 Total de Caixas/Sacos</span>
-                                <div class="flex items-center gap-3">
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-red-500 transition counter-btn border border-brand-neon/50" data-action="minus" data-target="item-caixas">-</button>
-                                    <span class="w-4 text-center font-bold item-count text-white" id="item-caixas">0</span>
-                                    <button type="button" class="w-8 h-8 rounded-full bg-zinc-800 text-white font-bold hover:bg-brand-neon transition counter-btn border border-brand-neon/50" data-action="plus" data-target="item-caixas">+</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <textarea id="extra-items" placeholder="Faltou algo? (Ex: Bicicleta, Vidros, Plantas, Mesa de Sinuca...)" class="w-full p-3 mt-4 bg-zinc-800 border border-zinc-700 text-white rounded-xl text-sm focus:border-brand-neon focus:ring-1 ring-brand-neon outline-none h-20 resize-none"></textarea>
-            </div>
-
-            <div class="flex gap-4 mt-8">
-                <button type="button" id="close-modal-btn" class="flex-1 py-3 font-bold text-gray-400 hover:text-white hover:bg-zinc-800 rounded-xl transition border border-zinc-700 uppercase">Cancelar</button>
-                <button type="button" id="send-whatsapp-btn" class="flex-1 bg-brand-neon text-black py-3 rounded-xl font-black shadow-[0_0_15px_rgba(0,242,255,0.4)] uppercase hover:bg-cyan-400 transition flex justify-center items-center gap-2">
-                    <i class="fab fa-whatsapp text-xl"></i> Enviar Agora
-                </button>
-            </div>
+    <div class="fixed bottom-0 left-0 w-full bg-brand-dark text-white p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.2)] z-50 flex justify-center items-center cursor-pointer hover:bg-brand-light transition" onclick="submitForm()">
+        <div class="font-heading font-800 text-lg flex items-center gap-3">
+            <span>( <span id="total-items" class="text-brand-cyan">0</span> ) VER MINHA LISTA</span>
+            <i class="fa-solid fa-truck-fast text-2xl"></i>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const WHATSAPP_NUMBER = "5511963692499"; 
+        // Data Structure for Inventory
+        const inventoryData = {
+            cozinha: [
+                { id: 'geladeira', name: 'Geladeira', icon: 'fa-box' },
+                { id: 'fogao', name: 'Fogão / Máq. Lavar', icon: 'fa-box' },
+                { id: 'armario_coz', name: 'Armário (Módulos)', icon: 'fa-box' },
+                { id: 'mesa_peq', name: 'Mesa Pequena', icon: 'fa-box' }
+            ],
+            sala: [
+                { id: 'sofa', name: 'Sofá', icon: 'fa-couch' },
+                { id: 'rack', name: 'Rack / Painel', icon: 'fa-tv' },
+                { id: 'mesa_jantar', name: 'Mesa de Jantar', icon: 'fa-utensils' },
+                { id: 'cadeiras', name: 'Cadeiras (Unidade)', icon: 'fa-chair' }
+            ],
+            quarto: [
+                { id: 'cama_solt', name: 'Cama Solteiro', icon: 'fa-bed' },
+                { id: 'cama_casal', name: 'Cama Casal/Queen', icon: 'fa-bed' },
+                { id: 'guarda_roupa', name: 'Guarda-Roupa', icon: 'fa-door-closed' },
+                { id: 'comoda', name: 'Cômoda / Mesa Cab.', icon: 'fa-box' }
+            ]
+        };
 
-            const serviceCards = document.querySelectorAll(".add-to-cart-btn");
-            const quoteModal = document.getElementById("quote-modal");
-            const closeModalBtn = document.getElementById("close-modal-btn");
-            const sendWhatsappBtn = document.getElementById("send-whatsapp-btn");
-            const selectedServiceTitle = document.getElementById("selected-service-title");
+        let totalItemsCount = 0;
 
-            let currentSelectedService = "";
-
-            // Lógica ViaCEP
-            const buscarCEP = async (cepInputId, addressInputId) => {
-                const cepInput = document.getElementById(cepInputId);
-                const addressInput = document.getElementById(addressInputId);
-                let cep = cepInput.value.replace(/\D/g, ''); 
-
-                if (cep.length === 8) {
-                    try {
-                        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                        const data = await response.json();
-                        
-                        if (!data.erro) {
-                            addressInput.value = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
-                        } else {
-                            Toastify({
-                                text: "CEP não encontrado.",
-                                duration: 3000,
-                                style: { background: "#ff3333", color: "#fff", fontWeight: "bold" }
-                            }).showToast();
-                        }
-                    } catch (error) {
-                        console.error("Erro ViaCEP:", error);
-                    }
-                }
-            };
-
-            document.getElementById("cep-origin").addEventListener("input", (e) => {
-                let cep = e.target.value.replace(/\D/g, '');
-                if(cep.length === 8) buscarCEP("cep-origin", "origin");
+        // Render Inventory Items
+        function renderItems(category, containerId) {
+            const container = document.getElementById(containerId);
+            let html = '';
+            
+            inventoryData[category].forEach(item => {
+                html += `
+                <div class="flex justify-between items-center border-b border-gray-100 pb-2 last:border-0 last:pb-0">
+                    <div class="flex items-center gap-2 text-sm font-medium text-gray-700">
+                        <i class="fa-solid ${item.icon} text-gray-400 w-5"></i>
+                        ${item.name}
+                    </div>
+                    <div class="flex items-center gap-3 bg-gray-50 rounded-full px-2 py-1 border border-gray-200">
+                        <button class="w-6 h-6 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold hover:bg-brand-cyan hover:text-white transition" onclick="updateCount('${item.id}', -1)">-</button>
+                        <span id="count-${item.id}" class="w-4 text-center font-bold text-gray-800 text-sm">0</span>
+                        <button class="w-6 h-6 rounded-full bg-brand-dark text-white flex items-center justify-center font-bold hover:bg-brand-cyan transition" onclick="updateCount('${item.id}', 1)">+</button>
+                    </div>
+                </div>`;
             });
-            document.getElementById("cep-destination").addEventListener("input", (e) => {
-                let cep = e.target.value.replace(/\D/g, '');
-                if(cep.length === 8) buscarCEP("cep-destination", "destination");
-            });
+            container.innerHTML = html;
+        }
 
-            // Abrir e Fechar Modal
-            serviceCards.forEach(card => {
-                card.addEventListener("click", (e) => {
-                    currentSelectedService = e.currentTarget.getAttribute("data-name");
-                    selectedServiceTitle.textContent = currentSelectedService;
-                    resetForm();
-                    quoteModal.classList.remove("hidden");
-                });
-            });
+        // Initialize Render
+        renderItems('cozinha', 'list-cozinha');
+        renderItems('sala', 'list-sala');
+        renderItems('quarto', 'list-quarto');
 
-            closeModalBtn.addEventListener("click", () => quoteModal.classList.add("hidden"));
-            quoteModal.addEventListener("click", (e) => {
-                if (e.target === quoteModal) quoteModal.classList.add("hidden");
-            });
+        // Logic for Item Counters
+        function updateCount(itemId, change) {
+            const countElement = document.getElementById(`count-${itemId}`);
+            let currentCount = parseInt(countElement.innerText);
+            let newCount = currentCount + change;
 
-            // Contadores de Inventário
-            const counterBtns = document.querySelectorAll(".counter-btn");
-            counterBtns.forEach(btn => {
-                btn.addEventListener("click", (e) => {
-                    const action = e.target.getAttribute("data-action");
-                    const targetId = e.target.getAttribute("data-target");
-                    const countElement = document.getElementById(targetId);
-                    
-                    if(countElement) {
-                        let currentCount = parseInt(countElement.textContent);
-                        if (action === "plus") {
-                            currentCount++;
-                        } else if (action === "minus" && currentCount > 0) {
-                            currentCount--;
-                        }
-                        countElement.textContent = currentCount;
-                    }
-                });
-            });
-
-            // Envio para o WhatsApp
-            sendWhatsappBtn.addEventListener("click", () => {
-                const origin = document.getElementById("origin").value.trim();
-                const numOrigin = document.getElementById("num-origin").value.trim();
-                const destination = document.getElementById("destination").value.trim();
-                const numDestination = document.getElementById("num-destination").value.trim();
-                const accessType = document.getElementById("access-type").value;
+            if (newCount >= 0) {
+                countElement.innerText = newCount;
+                totalItemsCount += change;
                 
-                const helpers = document.getElementById("helpers").value;
-                const assembly = document.getElementById("assembly").value;
-                const packing = document.getElementById("packing").value;
-                const extraItems = document.getElementById("extra-items").value.trim();
-
-                if (!origin || !destination) {
-                    Toastify({ text: "⚠️ Preencha os locais de retirada e entrega!", duration: 3500, style: { background: "#ff3333", color: "#fff", fontWeight: "bold" } }).showToast();
-                    return;
-                }
-                if (!accessType) {
-                    Toastify({ text: "⚠️ Informe o tipo de acesso (Escadas/Elevador).", duration: 3500, style: { background: "#ff3333", color: "#fff", fontWeight: "bold" } }).showToast();
-                    return;
-                }
-
-                let inventoryText = "";
-                const items = [
-                    { id: "item-geladeira", label: "Geladeira(s)" },
-                    { id: "item-fogao", label: "Fogão" },
-                    { id: "item-maquina", label: "Máquina de Lavar" },
-                    { id: "item-mesa", label: "Mesa c/ Cadeiras" },
-                    { id: "item-sofa", label: "Sofá(s)" },
-                    { id: "item-rack", label: "Painel/Rack" },
-                    { id: "item-cama", label: "Cama(s)" },
-                    { id: "item-armario", label: "Guarda-Roupa(s)" },
-                    { id: "item-caixas", label: "Caixas/Sacos (Aprox.)" }
-                ];
-
-                items.forEach(item => {
-                    const countElement = document.getElementById(item.id);
-                    if (countElement && parseInt(countElement.textContent) > 0) {
-                        inventoryText += `🔹 ${countElement.textContent}x ${item.label}\n`;
-                    }
-                });
-
-                const fullOrigin = numOrigin ? `${origin}, N° ${numOrigin}` : origin;
-                const fullDestination = numDestination ? `${destination}, N° ${numDestination}` : destination;
-
-                let message = `*COTAÇÃO RICK TRANSPORTES* 🚚\n\n`;
-                message += `*Serviço:* ${currentSelectedService}\n`;
-                message += `📍 *Retirada:* ${fullOrigin}\n`;
-                message += `🏁 *Entrega:* ${fullDestination}\n`;
-                message += `🏢 *Imóvel/Acesso:* ${accessType}\n\n`;
-                
-                message += `*SERVIÇOS SOLICITADOS:*\n`;
-                message += `👷 *Equipe:* ${helpers}\n`;
-                message += `🛠️ *Montagem:* ${assembly}\n`;
-                message += `📦 *Embalagem:* ${packing}\n\n`;
-
-                message += `*INVENTÁRIO INFORMADO:*\n`;
-                if (inventoryText === "" && !extraItems) {
-                    message += `_Apenas caixas ou itens não listados._\n`;
-                } else {
-                    message += inventoryText;
-                    if (extraItems) message += `\n*Avisos/Outros Itens:* ${extraItems}\n`;
-                }
-
-                const encodedMessage = encodeURIComponent(message);
-                const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-                window.open(whatsappUrl, "_blank");
-                quoteModal.classList.add("hidden");
-            });
-
-            function resetForm() {
-                document.querySelectorAll("input[type='text'], textarea").forEach(input => input.value = "");
-                document.getElementById("access-type").value = "";
-                document.getElementById("helpers").value = "Sem Ajudante";
-                document.getElementById("assembly").value = "Sem Montador";
-                document.getElementById("packing").value = "Sem Embalagem";
-                document.querySelectorAll(".item-count").forEach(span => span.textContent = "0");
+                // Animate total counter
+                const totalEl = document.getElementById('total-items');
+                totalEl.innerText = totalItemsCount;
+                totalEl.classList.add('scale-150', 'text-white');
+                setTimeout(() => {
+                    totalEl.classList.remove('scale-150', 'text-white');
+                }, 200);
             }
+        }
 
-            // Badge de Atendimento
-            const updateStatusBadge = () => {
-                const badge = document.getElementById("status-badge");
-                const statusText = document.getElementById("status-text");
-                const hour = new Date().getHours();
+        // Accordion Logic
+        function toggleAccordion(id, btnElement) {
+            const content = document.getElementById(id);
+            const icon = btnElement.querySelector('.fa-chevron-down');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Optional: Close others
+                document.querySelectorAll('.accordion-content').forEach(el => el.classList.remove('open'));
+                document.querySelectorAll('.fa-chevron-down').forEach(el => el.style.transform = 'rotate(0deg)');
+                
+                content.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
 
-                if (hour >= 7 && hour < 22) {
-                    badge.classList.add("border-green-500/50");
-                    statusText.textContent = "🟢 Aberto Agora";
-                    statusText.classList.replace("text-brand-neon", "text-green-400");
-                } else {
-                    badge.classList.add("border-yellow-500/50");
-                    statusText.textContent = "🌙 Recebendo Mensagens";
-                    statusText.classList.replace("text-brand-neon", "text-yellow-400");
-                }
-            };
-            updateStatusBadge();
-        });
+        // Status Toggle Logic (For Demonstration)
+        let isAvailable = true;
+        function toggleStatus() {
+            isAvailable = !isAvailable;
+            const badge = document.getElementById('status-badge');
+            const indicator = badge.querySelector('.status-indicator');
+            const text = badge.querySelector('.status-text');
+
+            if (isAvailable) {
+                badge.className = "bg-brand-green/20 border border-brand-green text-brand-green px-4 py-2 rounded-full flex items-center gap-2 text-sm font-bold tracking-wide shadow-lg cursor-pointer transition-colors";
+                indicator.className = "w-3 h-3 bg-brand-green rounded-full animate-pulse status-indicator";
+                text.innerText = "DISPONÍVEL AGORA";
+            } else {
+                badge.className = "bg-brand-red/20 border border-brand-red text-brand-red px-4 py-2 rounded-full flex items-center gap-2 text-sm font-bold tracking-wide shadow-lg cursor-pointer transition-colors";
+                indicator.className = "w-3 h-3 bg-brand-red rounded-full status-indicator";
+                text.innerText = "FORA DO HORÁRIO";
+            }
+        }
+
+        // Form Submit Simulation
+        function submitForm() {
+            if (totalItemsCount === 0) {
+                alert('Adicione pelo menos um item à sua lista para continuar o orçamento.');
+                return;
+            }
+            alert(`Iniciando cotação para ${totalItemsCount} itens...\n(Aqui entraria o redirecionamento para o WhatsApp ou Checkout)`);
+        }
     </script>
 </body>
 </html>
